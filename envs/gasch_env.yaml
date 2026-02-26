@@ -1,0 +1,18 @@
+heatmap name: gasch_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - r-base=4.2
+  - r-ggplot2
+  - r-dplyr
+  - r-tidyr
+  - r-readr
+  - r-rcolorbrewer
+  - r-cowplot
+  - r-tibble
+  - r-pkgconfig
+  - libxml2
+  - zlib
+  - gcc_linux-64
+  - gxx_linux-64
