@@ -81,12 +81,23 @@ p <- ggplot(long, aes(x = gene, y = condition, fill = expression)) +
   geom_tile(color = "black") +
   scale_fill_distiller(palette = "Purples", na.value = "grey50") +
   labs(title = "gene top 10 (first 30 conditions)", x = "gene", y = "conditions", fill = "expression") +
+  guides(fill = guide_colorbar(barwidth = 0.6, barheight = 4)) +
   theme_bw(base_size = 11) +
-  theme(text = element_text(family = "Times New Roman", size = 11),
-        plot.title = element_text(hjust = 0.5),
-        legend.position = c(0.92, 0.92),
-        legend.background = element_rect(fill = "white", color = "black"),
-        panel.border = element_rect(color = "black", fill = NA))
+  theme(
+    text = element_text(family = "Times New Roman", size = 11),
+    plot.title = element_text(hjust = 0.5),
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 8),
+    axis.text.y = element_text(size = 7),
+    legend.position = "right", # move legend fully outside
+    legend.justification = "center",
+    legend.key.width = grid::unit(0.4, "cm"),
+    legend.key.height = grid::unit(1.2, "cm"),
+    legend.background = element_rect(fill = "white", color = "black"),
+    panel.border = element_rect(color = "black", fill = NA),
+    plot.margin = margin(10, 60, 10, 10), # add space on right
+    panel.spacing = grid::unit(0.2, "lines") # shrink heatmap area
+  )
 
-ggsave(outfile, plot = p, width = 5, height = 5, dpi = 300, bg = "white")
+# Save wider image to ensure legend is outside
+ggsave(outfile, plot = p, width = 7, height = 6, dpi = 300, bg = "white")
 message("Saved heatmap to: ", outfile)
